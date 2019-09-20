@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://dbwbadmin:workoutbuilderdb@connector-yebb9.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
+}
