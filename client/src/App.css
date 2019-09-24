@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  height: 6vh;
+  background-color: #f4f4f4;
+  display: flex;
+  position: relative;
+}
+
+.items {
+  display: flex;
+  position: absolute;
+  top: 0.1rem;
+  right: 5rem;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.logo {
+  position: absolute;
+  top: 0.1rem;
+  left: 5rem;
+  align-items: center;
+}
+
+.item {
+  list-style: none;
+  padding: 5px;
+  margin: 0 5px 0 5px;
+}
+
+.btn {
+  cursor: pointer;
+  width: 100%;
+  background-color: rgba(208, 24, 24, 100);
+  border: none;
+  padding: 5px;
+  border-radius: 12px;
+}
+
+.btn:hover {
+  opacity: 0.5;
+}
+
+.landing {
+  height: 94vh;
+  background-image: url("./img/undraw_healthy_habit_bh5w.svg");
+  background-position: right;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.title-section {
+  position: absolute;
+  top: 7rem;
+  left: 5rem;
+  width: 30vw;
+}
+
+.title {
+  font-size: 4rem;
+}
+
+.info-section {
+  position: absolute;
+  top: 16rem;
+  left: 5rem;
+  width: 30vw;
+}
+
+.auth-section {
+  position: absolute;
+  top: 32rem;
+  left: 5rem;
+  width: 30vw;
+}
+
+.auth-item {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  background-color: rgba(108, 99, 255, 100);
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  margin: 10px;
+  color: white;
+}
+
+.auth-item:visited {
+  color: white;
+}
+
+/* Google Button */
+.google-button {
+  height: 40px;
+  border-width: 0;
+  background: white;
+  color: #737373;
+  border-radius: 5px;
+  white-space: nowrap;
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  transition-property: background-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  padding: 0;
+}
+
+.google-button:focus,
+.google-button:hover {
+  box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.google-button:active {
+  background-color: #e5e5e5;
+  box-shadow: none;
+  transition-duration: 10ms;
+}
+
+.google-button__icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 8px 0 8px 8px;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+}
+
+.google-button__icon--plus {
+  width: 27px;
+}
+
+.google-button__text {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "Roboto", arial, sans-serif;
+}
