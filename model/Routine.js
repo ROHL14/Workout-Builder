@@ -13,9 +13,9 @@ const RoutineSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  day1: [
+  exercise: [
     {
-      exercise: {
+      exercisename: {
         type: String,
         required: true
       },
@@ -34,175 +34,11 @@ const RoutineSchema = new mongoose.Schema({
       repetition: {
         type: String,
         required: true
+      },
+      day: {
+        type: String,
+        required: true
       }
-    }
-  ],
-  day2: [
-    {
-      exercise: [
-        {
-          name: {
-            type: String,
-            required: true
-          },
-          muscle: {
-            type: String,
-            required: true
-          },
-          description: {
-            type: String,
-            required: true
-          },
-          set: {
-            type: String,
-            required: true
-          },
-          repetition: {
-            type: String,
-            required: true
-          }
-        }
-      ]
-    }
-  ],
-  day3: [
-    {
-      exercise: [
-        {
-          name: {
-            type: String,
-            required: true
-          },
-          muscle: {
-            type: String,
-            required: true
-          },
-          description: {
-            type: String,
-            required: true
-          },
-          set: {
-            type: String,
-            required: true
-          },
-          repetition: {
-            type: String,
-            required: true
-          }
-        }
-      ]
-    }
-  ],
-  day4: [
-    {
-      exercise: [
-        {
-          name: {
-            type: String,
-            required: true
-          },
-          muscle: {
-            type: String,
-            required: true
-          },
-          description: {
-            type: String,
-            required: true
-          },
-          set: {
-            type: String,
-            required: true
-          },
-          repetition: {
-            type: String,
-            required: true
-          }
-        }
-      ]
-    }
-  ],
-  day5: [
-    {
-      exercise: [
-        {
-          name: {
-            type: String,
-            required: true
-          },
-          muscle: {
-            type: String,
-            required: true
-          },
-          description: {
-            type: String,
-            required: true
-          },
-          set: {
-            type: String,
-            required: true
-          },
-          repetition: {
-            type: String,
-            required: true
-          }
-        }
-      ]
-    }
-  ],
-  day6: [
-    {
-      exercise: [
-        {
-          name: {
-            type: String,
-            required: true
-          },
-          muscle: {
-            type: String,
-            required: true
-          },
-          description: {
-            type: String,
-            required: true
-          },
-          set: {
-            type: String,
-            required: true
-          },
-          repetition: {
-            type: String,
-            required: true
-          }
-        }
-      ]
-    }
-  ],
-  day7: [
-    {
-      exercise: [
-        {
-          name: {
-            type: String,
-            required: true
-          },
-          muscle: {
-            type: String,
-            required: true
-          },
-          description: {
-            type: String,
-            required: true
-          },
-          set: {
-            type: String,
-            required: true
-          },
-          repetition: {
-            type: String,
-            required: true
-          }
-        }
-      ]
     }
   ],
   date: {

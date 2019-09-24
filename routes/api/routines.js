@@ -27,11 +27,11 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-// @route  PUT api/routine/day/exercise
+// @route  PUT api/routine/exercise
 // @desc   Add exercises to the routine
 // @accses Private
 router.put(
-  "/day1/exercise",
+  "/exercise",
   [
     auth,
     [
@@ -40,6 +40,9 @@ router.put(
           .not()
           .isEmpty(),
         check("repetition", "Number of repetitions are required")
+          .not()
+          .isEmpty(),
+        check("day", "Day to do the exercise is required")
           .not()
           .isEmpty()
       ]
@@ -51,14 +54,28 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { exercise, muscle, description, set, repetition } = req.body;
+    const {
+      exercisename,
+      muscle,
+      description,
+      set,
+      repetition,
+      day
+    } = req.body;
 
-    const newExercise = { exercise, muscle, description, set, repetition };
+    const newExercise = {
+      exercisename,
+      muscle,
+      description,
+      set,
+      repetition,
+      day
+    };
 
     try {
       const routine = await Routine.findOne({ user: req.user.id });
 
-      routine.day1.unshift(newExercise);
+      routine.exercise.unshift(newExercise);
 
       await routine.save();
 
@@ -70,262 +87,39 @@ router.put(
   }
 );
 
-// @route  PUT api/routine/day/exercise
-// @desc   Add exercises to the routine
+// @route  GET api/routines
+// @desc   Get all routines
 // @accses Private
-router.put(
-  "/day2/exercise",
-  [
-    auth,
-    [
-      [
-        check("set", "Number of sets are required")
-          .not()
-          .isEmpty(),
-        check("repetition", "Number of repetitions are required")
-          .not()
-          .isEmpty()
-      ]
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { exercise, muscle, description, set, repetition } = req.body;
-
-    const newExercise = { exercise, muscle, description, set, repetition };
-
-    try {
-      const routine = await Routine.findOne({ user: req.user.id });
-
-      routine.day2.unshift(newExercise);
-
-      await routine.save();
-
-      res.json(routine);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Server Error");
-    }
+router.get("/", auth, async (req, res) => {
+  try {
+    const routines = await Routine.find().populate("user", ["name", "avatar"]);
+    res.json(routines);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
-);
+});
 
-// @route  PUT api/routine/day/exercise
-// @desc   Add exercises to the routine
+// @route  DELETE api/routine/exercise/:exc_id
+// @desc   Delete exercises from the routine
 // @accses Private
-router.put(
-  "/day3/exercise",
-  [
-    auth,
-    [
-      [
-        check("set", "Number of sets are required")
-          .not()
-          .isEmpty(),
-        check("repetition", "Number of repetitions are required")
-          .not()
-          .isEmpty()
-      ]
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+router.delete("/exercise/:exc_id", auth, async (req, res) => {
+  try {
+    const routine = await Routine.findOne({ user: req.user.id });
 
-    const { exercise, muscle, description, set, repetition } = req.body;
+    // Get the remove index
+    const removeIndex = routine.exercise
+      .map(item => item.id)
+      .indexOf(req.params.exc_id);
 
-    const newExercise = { exercise, muscle, description, set, repetition };
+    routine.exercise.splice(removeIndex, 1);
 
-    try {
-      const routine = await Routine.findOne({ user: req.user.id });
-
-      routine.day3.unshift(newExercise);
-
-      await routine.save();
-
-      res.json(routine);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Server Error");
-    }
+    await routine.save();
+    res.json(routine);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
   }
-);
-
-// @route  PUT api/routine/day/exercise
-// @desc   Add exercises to the routine
-// @accses Private
-router.put(
-  "/day4/exercise",
-  [
-    auth,
-    [
-      [
-        check("set", "Number of sets are required")
-          .not()
-          .isEmpty(),
-        check("repetition", "Number of repetitions are required")
-          .not()
-          .isEmpty()
-      ]
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { exercise, muscle, description, set, repetition } = req.body;
-
-    const newExercise = { exercise, muscle, description, set, repetition };
-
-    try {
-      const routine = await Routine.findOne({ user: req.user.id });
-
-      routine.day4.unshift(newExercise);
-
-      await routine.save();
-
-      res.json(routine);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Server Error");
-    }
-  }
-);
-
-// @route  PUT api/routine/day/exercise
-// @desc   Add exercises to the routine
-// @accses Private
-router.put(
-  "/day5/exercise",
-  [
-    auth,
-    [
-      [
-        check("set", "Number of sets are required")
-          .not()
-          .isEmpty(),
-        check("repetition", "Number of repetitions are required")
-          .not()
-          .isEmpty()
-      ]
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { exercise, muscle, description, set, repetition } = req.body;
-
-    const newExercise = { exercise, muscle, description, set, repetition };
-
-    try {
-      const routine = await Routine.findOne({ user: req.user.id });
-
-      routine.day5.unshift(newExercise);
-
-      await routine.save();
-
-      res.json(routine);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Server Error");
-    }
-  }
-);
-
-// @route  PUT api/routine/day/exercise
-// @desc   Add exercises to the routine
-// @accses Private
-router.put(
-  "/day6/exercise",
-  [
-    auth,
-    [
-      [
-        check("set", "Number of sets are required")
-          .not()
-          .isEmpty(),
-        check("repetition", "Number of repetitions are required")
-          .not()
-          .isEmpty()
-      ]
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { exercise, muscle, description, set, repetition } = req.body;
-
-    const newExercise = { exercise, muscle, description, set, repetition };
-
-    try {
-      const routine = await Routine.findOne({ user: req.user.id });
-
-      routine.day6.unshift(newExercise);
-
-      await routine.save();
-
-      res.json(routine);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Server Error");
-    }
-  }
-);
-
-// @route  PUT api/routine/day/exercise
-// @desc   Add exercises to the routine
-// @accses Private
-router.put(
-  "/day7/exercise",
-  [
-    auth,
-    [
-      [
-        check("set", "Number of sets are required")
-          .not()
-          .isEmpty(),
-        check("repetition", "Number of repetitions are required")
-          .not()
-          .isEmpty()
-      ]
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { exercise, muscle, description, set, repetition } = req.body;
-
-    const newExercise = { exercise, muscle, description, set, repetition };
-
-    try {
-      const routine = await Routine.findOne({ user: req.user.id });
-
-      routine.day7.unshift(newExercise);
-
-      await routine.save();
-
-      res.json(routine);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Server Error");
-    }
-  }
-);
+});
 
 module.exports = router;
