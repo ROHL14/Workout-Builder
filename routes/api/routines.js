@@ -92,8 +92,27 @@ router.put(
 // @accses Private
 router.get("/", auth, async (req, res) => {
   try {
-    const routines = await Routine.find().populate("user", ["name", "avatar"]);
+    const routines = await Routine.find({ user: req.user.id }).populate(
+      "user",
+      ["name", "avatar"]
+    );
     res.json(routines);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route  GET api/routines/:id
+// @desc   Get a routine
+// @accses Private
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const routine = await Routine.findById(req.params.id).populate("user", [
+      "name",
+      "avatar"
+    ]);
+    res.json(routine);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -121,5 +140,65 @@ router.delete("/exercise/:exc_id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// @route  PUT api/routine/exercise/:id
+// @desc   Add exercises to a routine
+// @accses Private
+router.put(
+  "/exercise/:id",
+  [
+    auth,
+    [
+      [
+        check("set", "Number of sets are required")
+          .not()
+          .isEmpty(),
+        check("repetition", "Number of repetitions are required")
+          .not()
+          .isEmpty(),
+        check("day", "Day to do the exercise is required")
+          .not()
+          .isEmpty()
+      ]
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      exercisename,
+      muscle,
+      description,
+      set,
+      repetition,
+      day
+    } = req.body;
+
+    const newExercise = {
+      exercisename,
+      muscle,
+      description,
+      set,
+      repetition,
+      day
+    };
+
+    try {
+      const routine = await Routine.findById(req.params.id);
+
+      routine.exercise.unshift(newExercise);
+
+      await routine.save();
+
+      res.json(routine);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 module.exports = router;

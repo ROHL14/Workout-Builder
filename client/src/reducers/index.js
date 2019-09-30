@@ -1,8 +1,18 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import authReducer from "./authReducer";
+import googleAuthReducer from "./googleAuthReducer";
+import alert from "./alert";
+import exercise from "./exercise";
+import auth from "./auth";
+import profile from "./profile";
+import routine from "./routine";
 
 export default combineReducers({
-  auth: authReducer,
-  form: formReducer
+  alert,
+  auth,
+  authGoogle: googleAuthReducer,
+  form: formReducer,
+  exercise,
+  profile,
+  routine
 });
