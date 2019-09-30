@@ -1,4 +1,5 @@
 import {
+  CREATE_ROUTINE,
   GET_ROUTINES,
   GET_ROUTINE,
   ROUTINE_ERROR,
@@ -22,6 +23,7 @@ export default (state = INITIAL_STATE, action) => {
         routines: payload,
         loading: false
       };
+    case CREATE_ROUTINE:
     case GET_ROUTINE:
       return {
         ...state,

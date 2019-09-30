@@ -8,7 +8,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import Exercises from "./components/exercises/Exercises";
-import Builder from "./components/Builder";
+import CreateRoutine from "./components/routines/CreateRoutine";
 import AddExercise from "./components/routines/AddExercise";
 import PrivateRoute from "./components/routing/PrivateRoute";
 
@@ -41,7 +41,11 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route path="/exercises" exact component={Exercises} />
             <PrivateRoute exact path="/my-routines" component={Dashboard} />
-            <PrivateRoute path="/builder" exact component={Builder} />
+            <PrivateRoute
+              path="/create-routine"
+              exact
+              component={CreateRoutine}
+            />
             <PrivateRoute
               path="/add-exercise/:id"
               exact

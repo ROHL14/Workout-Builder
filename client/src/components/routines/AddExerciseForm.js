@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import SelectItem from "./form/SelectItem";
 import { addExercise } from "../../actions/routine";
 import { getExercises } from "../../actions/exercise";
 
@@ -41,14 +40,6 @@ const AddExerciseForm = ({
           addExercise(routineId, formData, history);
         }}
       >
-        <div className="form-group col-md-4">
-          <label htmlFor="inputState">Exercise</label>
-          <select id="inputState" className="form-control">
-            {exercises.map(exercise => (
-              <SelectItem key={exercise._id} exercise={exercise} />
-            ))}
-          </select>
-        </div>
         <div className="form-group">
           <input
             type="text"

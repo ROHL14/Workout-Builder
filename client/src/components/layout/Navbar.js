@@ -10,20 +10,19 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <ul className="items">
       <li className="item">
         <Link to="/my-routines">
-          <i className="fas fa-user"></i>{" "}
-          <span className="hode-sm">My Routines</span>
+          <i className="fas fa-user"></i> <span className="">My Routines</span>
         </Link>
       </li>
       <li className="item">
-        <Link to="/builder">
+        <Link to="/exercises">
           <i className="fas fa-dumbbell"></i>{" "}
-          <span className="hode-sm">Builder</span>
+          <span className="">Exercises</span>
         </Link>
       </li>
       <li className="item">
         <a onClick={logout} href="#!">
           <i className="fas fa-sign-out-alt"></i>{" "}
-          <span className="hode-sm">Logout</span>
+          <span className="">Logout</span>
         </a>
       </li>
     </ul>
