@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
-import GoogleAuth from "../auth/GoogleAuth";
+//import GoogleAuth from "../auth/GoogleAuth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
@@ -38,9 +38,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
       <li className="item">
         <Link to="/login">Login</Link>
-      </li>
-      <li className="item">
-        <GoogleAuth />
       </li>
     </ul>
   );
