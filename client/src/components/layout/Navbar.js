@@ -7,21 +7,19 @@ import { logout } from "../../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
-    <ul className="items">
-      <li className="item">
-        <Link to="/my-routines">
-          <i className="fas fa-user"></i> <span className="">My Routines</span>
+    <ul className="navigation__list">
+      <li className="navigation__item">
+        <Link className="navigation__link" to="/my-routines">
+          My Routines
         </Link>
       </li>
-      <li className="item">
-        <Link to="/exercises">
-          <i className="fas fa-dumbbell"></i>{" "}
+      <li className="navigation__item">
+        <Link className="navigation__link" to="/exercises">
           <span className="">Exercises</span>
         </Link>
       </li>
-      <li className="item">
-        <a onClick={logout} href="#!">
-          <i className="fas fa-sign-out-alt"></i>{" "}
+      <li className="navigation__item">
+        <a className="navigation__link" onClick={logout} href="#!">
           <span className="">Logout</span>
         </a>
       </li>
@@ -29,29 +27,38 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   const guestLinks = (
-    <ul className="items">
-      <li className="item">
-        <Link to="/exercises">Exercises</Link>
+    <ul className="navigation__list">
+      <li className="navigation__item">
+        <Link className="navigation__link" to="/exercises">
+          Exercises
+        </Link>
       </li>
-      <li className="item">
-        <Link to="/register">Register</Link>
+      <li className="navigation__item">
+        <Link className="navigation__link" to="/register">
+          Register
+        </Link>
       </li>
-      <li className="item">
-        <Link to="/login">Login</Link>
+      <li className="navigation__item">
+        <Link className="navigation__link" to="/login">
+          Login
+        </Link>
       </li>
     </ul>
   );
 
   return (
-    <nav className="navbar">
-      <h1 className="logo">
-        <i className="fas fa-dumbbell"></i>
-        <Link to="/"> WorkoutBuilder</Link>
-      </h1>
-      {!loading && (
-        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-      )}
-    </nav>
+    <div className="navigation">
+      <nav className="navigation__nav">
+        <h1 className="navigation__logo">
+          <Link className="navigation__link" to="/">
+            WorkoutBuilder
+          </Link>
+        </h1>
+        {!loading && (
+          <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        )}
+      </nav>
+    </div>
   );
 };
 

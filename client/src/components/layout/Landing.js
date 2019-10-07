@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -9,34 +9,34 @@ const Landing = ({ isAuthenticated }) => {
   }
 
   return (
-    <div className="landing">
-      <section className="title-section">
-        <h1 className="title">Workout Builder</h1>
+    <Fragment>
+      <section className="section-about">
+        <div className="u-margin-bottom-big">
+          <h1 className="heading-primary">Workout Builder</h1>
+        </div>
+        <div className="section-about__info">
+          <h3 className="heading-tertiary u-margin-bottom-small">
+            The best place to find any exercise.
+          </h3>
+          <p className="paragraph">
+            You can build your personalize routines with a lot of exercises to
+            choose
+          </p>
+          <p className="paragraph">
+            In our database we have all the exercise that you can imagine, You
+            just need to choose the exercise and it will added to your routine
+          </p>
+        </div>
+        <div className="section-about__buttons">
+          <Link className="btn" to="/register">
+            Signup
+          </Link>
+          <Link className="btn" to="/login">
+            Login
+          </Link>
+        </div>
       </section>
-
-      <section className="info-section">
-        <p className="info">
-          Is the best place to find the exercise that you are looking for.
-          <br />
-          <br />
-          You can also build your personalize routines with a lot of exercises
-          to choose
-          <br />
-          <br />
-          We have really good routines that will help to build muscles, also
-          those routines will help you as a guideline to know what you need to
-          build your personalize routine.
-        </p>
-      </section>
-      <section className="auth-section">
-        <Link className="auth-item" to="/register">
-          Signup
-        </Link>
-        <Link className="auth-item" to="/login">
-          Login
-        </Link>
-      </section>
-    </div>
+    </Fragment>
   );
 };
 

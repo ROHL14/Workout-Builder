@@ -18,7 +18,7 @@ import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 
-import "./App.css";
+import "./sass/main.scss";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -34,24 +34,26 @@ const App = () => {
       <BrowserRouter>
         <Fragment>
           <Navbar />
-          <Route path="/" exact component={Landing} />
-          <Alert />
-          <Switch>
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route path="/exercises" exact component={Exercises} />
-            <PrivateRoute exact path="/my-routines" component={Dashboard} />
-            <PrivateRoute
-              path="/create-routine"
-              exact
-              component={CreateRoutine}
-            />
-            <PrivateRoute
-              path="/add-exercise/:id"
-              exact
-              component={AddExercise}
-            />
-          </Switch>
+          <main>
+            <Route path="/" exact component={Landing} />
+            <Alert />
+            <Switch>
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route path="/exercises" exact component={Exercises} />
+              <PrivateRoute exact path="/my-routines" component={Dashboard} />
+              <PrivateRoute
+                path="/create-routine"
+                exact
+                component={CreateRoutine}
+              />
+              <PrivateRoute
+                path="/add-exercise/:id"
+                exact
+                component={AddExercise}
+              />
+            </Switch>
+          </main>
         </Fragment>
       </BrowserRouter>
     </Provider>

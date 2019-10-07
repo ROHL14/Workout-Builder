@@ -1,0 +1,40 @@
+.navigation {
+  background-image: radial-gradient($color-grey-light-1, $color-grey-light-2);
+  color: $color-grey-dark-3;
+  width: 20vh;
+
+  &__nav {
+    height: 100vh;
+  }
+
+  &__logo {
+    word-break: break-word;
+  }
+
+  &__list {
+    list-style: none;
+    width: 100%;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: inline-block;
+      padding: 1rem 2rem;
+      color: $color-grey-dark-3;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.4s;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-grey-dark-3;
+      transform: translateX(1rem);
+    }
+  }
+}
