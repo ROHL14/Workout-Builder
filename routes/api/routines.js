@@ -3,11 +3,11 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
 
-const { Routine, User } = require("../../model");
+const { Routine, User, Exercise } = require("../../model");
 
 // @route  POST api/routine
 // @desc   Create a routine
-// @acces  Private
+// @access  Private
 router.post("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -27,69 +27,9 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-// @route  PUT api/routine/exercise
-// @desc   Add exercises to the routine
-// @accses Private
-router.put(
-  "/exercise",
-  [
-    auth,
-    [
-      [
-        check("set", "Number of sets are required")
-          .not()
-          .isEmpty(),
-        check("repetition", "Number of repetitions are required")
-          .not()
-          .isEmpty(),
-        check("day", "Day to do the exercise is required")
-          .not()
-          .isEmpty()
-      ]
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const {
-      exercisename,
-      muscle,
-      description,
-      set,
-      repetition,
-      day
-    } = req.body;
-
-    const newExercise = {
-      exercisename,
-      muscle,
-      description,
-      set,
-      repetition,
-      day
-    };
-
-    try {
-      const routine = await Routine.findOne({ user: req.user.id });
-
-      routine.exercise.unshift(newExercise);
-
-      await routine.save();
-
-      res.json(routine);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Server Error");
-    }
-  }
-);
-
 // @route  GET api/routines
 // @desc   Get all routines
-// @accses Private
+// @access Private
 router.get("/", auth, async (req, res) => {
   try {
     const routines = await Routine.find({ user: req.user.id }).populate(
@@ -105,7 +45,7 @@ router.get("/", auth, async (req, res) => {
 
 // @route  GET api/routines/:id
 // @desc   Get a routine
-// @accses Private
+// @access Private
 router.get("/:id", auth, async (req, res) => {
   try {
     const routine = await Routine.findById(req.params.id).populate("user", [
@@ -119,37 +59,46 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
-// @route  DELETE api/routine/exercise/:exc_id
-// @desc   Delete exercises from the routine
-// @accses Private
-router.delete("/exercise/:exc_id", auth, async (req, res) => {
+// @route    DELETE api/routines/:id
+// @desc     Delete a routine
+// @access   Private
+router.delete("/:id", auth, async (req, res) => {
   try {
-    const routine = await Routine.findOne({ user: req.user.id });
+    const routine = await Routine.findById(req.params.id);
 
-    // Get the remove index
-    const removeIndex = routine.exercise
-      .map(item => item.id)
-      .indexOf(req.params.exc_id);
+    if (!routine) {
+      return res.status(404).json({ msg: "Routine not found" });
+    }
 
-    routine.exercise.splice(removeIndex, 1);
+    // Check user
+    if (routine.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "User not authorized" });
+    }
 
-    await routine.save();
-    res.json(routine);
-  } catch (error) {
-    console.error(error.message);
+    await routine.remove();
+
+    res.json({ msg: "Routine removed" });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Routine not found" });
+    }
     res.status(500).send("Server Error");
   }
 });
 
 // @route  PUT api/routine/exercise/:id
 // @desc   Add exercises to a routine
-// @accses Private
+// @access Private
 router.put(
   "/exercise/:id",
   [
     auth,
     [
       [
+        check("exercisename", "Exercise is required")
+          .not()
+          .isEmpty(),
         check("set", "Number of sets are required")
           .not()
           .isEmpty(),
@@ -168,19 +117,14 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      exercisename,
-      muscle,
-      description,
-      set,
-      repetition,
-      day
-    } = req.body;
+    const { exercisename, set, repetition, day } = req.body;
+
+    const exercise = await Exercise.findOne({ name: exercisename });
 
     const newExercise = {
-      exercisename,
-      muscle,
-      description,
+      exercisename: exercise.name,
+      muscle: exercise.muscle,
+      description: exercise.description,
       set,
       repetition,
       day
@@ -200,5 +144,37 @@ router.put(
     }
   }
 );
+
+// @route  DELETE api/routine/exercise/:id/:exercise_  id
+// @desc   Delete an exercises of the routine
+// @access Private
+router.delete("/exercise/:id/:exercise_id", auth, async (req, res) => {
+  try {
+    const routine = await Routine.findById(req.params.id);
+
+    // Find exercise in the routine
+    const exercise = await routine.exercise.find(
+      item => item.id === req.params.exercise_id
+    );
+
+    if (!exercise) {
+      return res.status(404).json({ msg: "Exercise does not exist" });
+    }
+
+    // Get remove index
+    const removeIndex = routine.exercise
+      .map(item => item.id)
+      .indexOf(req.params.exercise_id);
+
+    routine.exercise.splice(removeIndex, 1);
+
+    await routine.save();
+
+    res.json(routine.exercise);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;

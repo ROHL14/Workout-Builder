@@ -1,5 +1,4 @@
 import React, { useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
@@ -34,9 +33,7 @@ const Dashboard = ({
       ) : (
         <Fragment>
           <p>You don't have a routine yet, Create one</p>
-          <Link to="/create-routine" className="btn btn-light">
-            Create Routine
-          </Link>
+          <DashboardActions />
         </Fragment>
       )}
     </div>

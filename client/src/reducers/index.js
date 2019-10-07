@@ -4,7 +4,6 @@ import googleAuthReducer from "./googleAuthReducer";
 import alert from "./alert";
 import exercise from "./exercise";
 import auth from "./auth";
-import profile from "./profile";
 import routine from "./routine";
 
 export default combineReducers({
@@ -13,6 +12,5 @@ export default combineReducers({
   authGoogle: googleAuthReducer,
   form: formReducer,
   exercise,
-  profile,
   routine
 });

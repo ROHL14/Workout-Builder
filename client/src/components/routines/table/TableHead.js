@@ -10,6 +10,7 @@ const TableHead = () => {
           <th className="">description</th>
           <th className="">Sets</th>
           <th className="">Repetitions</th>
+          <th className="">Delete</th>
         </tr>
       </thead>
     </Fragment>

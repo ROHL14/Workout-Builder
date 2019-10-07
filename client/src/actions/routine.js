@@ -3,10 +3,12 @@ import { setAlert } from "./alert";
 
 import {
   CREATE_ROUTINE,
+  DELETE_ROUTINE,
   GET_ROUTINES,
   GET_ROUTINE,
   ROUTINE_ERROR,
-  ADD_EXERCISE
+  ADD_EXERCISE,
+  DELETE_EXERCISE
 } from "./types";
 
 // Create or Update Routine
@@ -32,6 +34,25 @@ export const createRoutine = (formData, history) => async dispatch => {
       errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
 
+    dispatch({
+      type: ROUTINE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};
+
+// Delete a routine
+export const deleteRoutine = id => async dispatch => {
+  try {
+    await axios.delete(`/api/routines/${id}`);
+
+    dispatch({
+      type: DELETE_ROUTINE,
+      payload: id
+    });
+
+    dispatch(setAlert("Routine Removed", "success"));
+  } catch (error) {
     dispatch({
       type: ROUTINE_ERROR,
       payload: { msg: error.response.statusText, status: error.response.status }
@@ -67,7 +88,7 @@ export const getUserRoutine = id => async dispatch => {
   }
 };
 
-// Add exercise to the routine
+// Add exercise of a routine
 export const addExercise = (id, formData, history) => async dispatch => {
   const config = {
     headers: {
@@ -90,6 +111,31 @@ export const addExercise = (id, formData, history) => async dispatch => {
     dispatch(setAlert("Exercise Added", "success"));
 
     history.push(`/my-routines`);
+  } catch (error) {
+    const errors = error.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: ROUTINE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};
+
+// Delete exercise of a routine
+export const deleteExercise = (routineId, exerciseId) => async dispatch => {
+  try {
+    await axios.delete(`/api/routines/exercise/${routineId}/${exerciseId}`);
+
+    dispatch({
+      type: DELETE_EXERCISE,
+      payload: exerciseId
+    });
+
+    dispatch(setAlert("Exercise Removed", "success"));
   } catch (error) {
     dispatch({
       type: ROUTINE_ERROR,

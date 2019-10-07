@@ -1,36 +1,48 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Spinner from "../layout/Spinner";
 import AddExerciseForm from "./AddExerciseForm";
 
 import { getUserRoutine } from "../../actions/routine";
 
-const AddExercise = ({
-  getUserRoutine,
-  routine: { routine, loading },
-  match
-}) => {
+const AddExercise = ({ RoutineId, getUserRoutine }) => {
   useEffect(() => {
-    getUserRoutine(match.params.id);
-  }, [getUserRoutine, match]);
-
-  return loading === true || routine === null ? (
-    <Spinner />
-  ) : (
-    <div className="container mt-5">
-      <Link to="/my-routines" className="btn btn-danger">
-        Back to routines
-      </Link>
-      <AddExerciseForm routineId={routine._id} />
+    getUserRoutine(RoutineId);
+  }, [getUserRoutine, RoutineId]);
+  return (
+    <div
+      className="modal fade"
+      id="ModalExercise"
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="ModalCenter"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="ModalTitle">
+              Create a Routine
+            </h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <AddExerciseForm routineId={RoutineId} />
+        </div>
+      </div>
     </div>
   );
 };
 
 AddExercise.propTypes = {
   getUserRoutine: PropTypes.func.isRequired,
-  routine: PropTypes.object.isRequired
+  RoutineId: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
