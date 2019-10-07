@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { signIn, signOut } from "../actions/googleAuth";
+import { signIn, signOut } from "../../actions/googleAuth";
 
 class GoogleAuth extends Component {
   componentDidMount() {
