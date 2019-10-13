@@ -3,10 +3,10 @@ import CreateRoutine from "../routines/CreateRoutine";
 
 const DashboardActions = () => {
   return (
-    <div className="">
+    <div className="dashboard__actions">
       <button
         type="button"
-        className="btn btn-light"
+        className="btn btn-ghost"
         data-toggle="modal"
         data-target="#Modal"
       >

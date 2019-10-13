@@ -7,8 +7,17 @@
 @import "base/utilities";
 
 @import "components/button";
+@import "components/card";
+@import "components/form";
+@import "components/scrollbar";
+@import "components/table";
 
 @import "layout/grid";
+@import "layout/header";
 @import "layout/navigation";
+@import "layout/wrapper";
 
+@import "pages/authentication";
+@import "pages/dashboard";
+@import "pages/exercises";
 @import "pages/home";

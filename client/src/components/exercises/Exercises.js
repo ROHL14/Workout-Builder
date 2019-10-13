@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
@@ -13,14 +13,20 @@ const Exercises = ({ getExercises, exercise: { exercises, loading } }) => {
   return loading ? (
     <Spinner />
   ) : (
-    <section className="exercise-section">
-      <h1>Exercises</h1>
-      <div className="exercises">
-        {exercises.map(exercise => (
-          <ExerciseItem key={exercise._id} exercise={exercise} />
-        ))}
-      </div>
-    </section>
+    <Fragment>
+      {" "}
+      <div className="background"></div>
+      <section className="section-exercises">
+        <div className="section-exercises__container">
+          <h1 className="section-exercises__title">Exercises</h1>
+          <div className="section-exercises__list u-margin-top-small">
+            {exercises.map(exercise => (
+              <ExerciseItem key={exercise._id} exercise={exercise} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </Fragment>
   );
 };
 

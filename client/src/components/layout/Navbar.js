@@ -6,6 +6,18 @@ import { logout } from "../../actions/auth";
 //import GoogleAuth from "../auth/GoogleAuth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const classToggle = () => {
+    const navs = document.querySelectorAll(".navigation__list");
+
+    navs.forEach(nav => nav.classList.toggle("navigation__toggle-show"));
+  };
+
+  const toggle = () => {
+    document
+      .querySelector(".navigation__item-toggle")
+      .addEventListener("click", classToggle);
+  };
+
   const authLinks = (
     <ul className="navigation__list">
       <li className="navigation__item">
@@ -19,9 +31,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li className="navigation__item">
-        <a className="navigation__link" onClick={logout} href="#!">
+        <Link className="navigation__link" onClick={logout} to="/">
           <span className="">Logout</span>
-        </a>
+        </Link>
       </li>
     </ul>
   );
@@ -29,18 +41,19 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul className="navigation__list">
       <li className="navigation__item">
+        <Link className="navigation__link" to="/">
+          Home
+        </Link>
+      </li>
+      <li className="navigation__item">
         <Link className="navigation__link" to="/exercises">
           Exercises
         </Link>
       </li>
+
       <li className="navigation__item">
-        <Link className="navigation__link" to="/register">
-          Register
-        </Link>
-      </li>
-      <li className="navigation__item">
-        <Link className="navigation__link" to="/login">
-          Login
+        <Link className="navigation__link" to="/authenticate">
+          Get Started
         </Link>
       </li>
     </ul>
@@ -48,12 +61,15 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   return (
     <div className="navigation">
+      <input type="checkbox" class="navigation__checkbox" id="navi-toggle" />
+      <lable
+        for="navi-toggle"
+        class="navigation__item navigation__item-toggle"
+        onClick={toggle}
+      >
+        <span class="navigation__icon">&nbsp;</span>
+      </lable>
       <nav className="navigation__nav">
-        <h1 className="navigation__logo">
-          <Link className="navigation__link" to="/">
-            WorkoutBuilder
-          </Link>
-        </h1>
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}

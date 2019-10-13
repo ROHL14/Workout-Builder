@@ -1,0 +1,31 @@
+.header {
+  height: 100vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-3, 0.8),
+      rgba($color-primary-4, 0.8)
+    ),
+    url("../../img/undraw_working_out_6psf.svg");
+  background-size: unset;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}

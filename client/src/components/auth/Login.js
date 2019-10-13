@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useState, Fragment } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
@@ -28,13 +28,13 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1 className="">Sign In</h1>
-      <p className="">
-        <i className="fas fa-user"></i> Sign Into Your Account
-      </p>
-      <form className="" onSubmit={e => onSubmit(e)}>
-        <div className="p">
+      <div className="section-authentication__form sign-in-container">
+        <form className="form" onSubmit={e => onSubmit(e)}>
+          <h1 className="form__main-text">Sign In</h1>
+          <p className="form__sub-text">Sign Into Your Account</p>
+
           <input
+            className="form__input"
             type="email"
             placeholder="Email Address"
             name="email"
@@ -42,9 +42,9 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={e => onChange(e)}
             required
           />
-        </div>
-        <div className="">
+
           <input
+            className="form__input"
             type="password"
             placeholder="Password"
             name="password"
@@ -52,13 +52,10 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={e => onChange(e)}
             minLength="6"
           />
-        </div>
 
-        <input type="submit" className="" value="Login" />
-      </form>
-      <p className="">
-        Don't have an account? <Link to="/register">Sign Up</Link>
-      </p>
+          <input type="submit" className="btn-form" value="Sign In" />
+        </form>
+      </div>
     </Fragment>
   );
 };

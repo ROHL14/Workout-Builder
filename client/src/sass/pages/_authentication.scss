@@ -1,0 +1,128 @@
+.section-authentication {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+
+  &__container {
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    background-color: $color-grey-light-1;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25), 0 1rem 1rem rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 100rem;
+    max-width: 90%;
+    min-height: 60rem;
+    background: linear-gradient(to bottom, $color-primary-3, $color-primary-2)
+      no-repeat 0 0 / cover;
+  }
+
+  /* Animation */
+  &__container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+  }
+
+  &__container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+  }
+
+  &__container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+  }
+
+  &__container.right-panel-active .overlay {
+    transform: translateX(50%);
+  }
+
+  &__container.right-panel-active .overlay__left {
+    transform: translateX(0);
+  }
+
+  &__container.right-panel-active .overlay__right {
+    transform: translateX(20%);
+  }
+
+  &__form {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+
+  .sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+
+  .sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .overlay {
+    background: linear-gradient(to right, $color-primary-3, $color-primary-2)
+      no-repeat 0 0 / cover;
+    color: $color-white;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+
+    &__panel {
+      position: absolute;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 4rem;
+      height: 100%;
+      width: 50%;
+      text-align: center;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+    }
+
+    &__right {
+      right: 0;
+      transform: translateX(0%);
+    }
+
+    &__left {
+      transform: translateX(-20%);
+    }
+
+    &__main-text {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    &__sub-text {
+      font-size: 1.5rem;
+      font-weight: 100;
+      line-height: 2rem;
+      letter-spacing: 0.5px;
+      margin: 2rem 0 3rem;
+    }
+  }
+}

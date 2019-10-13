@@ -19,24 +19,32 @@ const Dashboard = ({
   return loading === true && routines.length === 0 ? (
     <Spinner />
   ) : (
-    <div className="container mt-5">
-      <h1 className="">Routines</h1>
-      <h4 className="">Welcome {user && user.name}</h4>
-
-      {routines.length !== 0 ? (
-        <Fragment>
-          <DashboardActions />
-          {routines.map(routine => (
-            <Routine key={routine._id} routine={routine} />
-          ))}
-        </Fragment>
-      ) : (
-        <Fragment>
-          <p>You don't have a routine yet, Create one</p>
-          <DashboardActions />
-        </Fragment>
-      )}
-    </div>
+    <Fragment>
+      <div className="background"></div>
+      <section className="section-dashboard">
+        <div className="dashboard">
+          <div className="dashboard__welcome">
+            <h1 className="">Routines</h1>
+            <h4 className="">Welcome {user && user.name}</h4>
+          </div>
+          <div className="dashboard__routines">
+            {routines.length !== 0 ? (
+              <Fragment>
+                <DashboardActions />
+                {routines.map(routine => (
+                  <Routine key={routine._id} routine={routine} />
+                ))}
+              </Fragment>
+            ) : (
+              <Fragment>
+                <p>You don't have a routine yet, Create one</p>
+                <DashboardActions />
+              </Fragment>
+            )}
+          </div>
+        </div>
+      </section>
+    </Fragment>
   );
 };
 

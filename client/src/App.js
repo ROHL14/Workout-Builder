@@ -4,12 +4,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Alert from "./components/layout/Alert";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import Exercises from "./components/exercises/Exercises";
 import CreateRoutine from "./components/routines/CreateRoutine";
 import AddExercise from "./components/routines/AddExercise";
+import Authentication from "./components/auth/Authentication";
 import PrivateRoute from "./components/routing/PrivateRoute";
 
 // Redux
@@ -34,12 +33,11 @@ const App = () => {
       <BrowserRouter>
         <Fragment>
           <Navbar />
-          <main>
+          <main className="wrapper">
             <Route path="/" exact component={Landing} />
             <Alert />
             <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
+              <Route exact path="/authenticate" component={Authentication} />
               <Route path="/exercises" exact component={Exercises} />
               <PrivateRoute exact path="/my-routines" component={Dashboard} />
               <PrivateRoute

@@ -1,0 +1,29 @@
+tr {
+  background: $color-white;
+  &:nth-child(2n) {
+    background: darken($color-white, 5%);
+  }
+  &:hover {
+    .msg {
+      opacity: 1;
+      top: 0;
+    }
+  }
+}
+
+th,
+td {
+  padding: 15px 20px;
+  vertical-align: middle;
+  &:nth-child(2) {
+    text-align: left;
+  }
+}
+
+th {
+  background: $color-primary-3;
+  color: $color-white;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 25px 20px;
+}

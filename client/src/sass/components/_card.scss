@@ -1,0 +1,16 @@
+.card {
+  border: solid $color-grey-dark;
+
+  &__title {
+    border-bottom: solid $color-grey-dark;
+  }
+
+  &__info {
+    background-color: $color-grey-light-2;
+  }
+
+  &__description {
+    font-size: 1.3rem;
+    background-color: $color-grey-light-2;
+  }
+}

@@ -2,10 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ExerciseItem = ({ exercise: { name, muscle, description } }) => (
-  <div className="exercise">
-    <h3 className="name">{name}</h3>
-    <h4 className="muscle">{muscle}</h4>
-    <p className="description">{description}</p>
+  <div className="card u-margin-top-small">
+    <div className="card__title">
+      <h1>{name}</h1>
+    </div>
+    <div className="card__info">
+      <h3>{muscle}</h3>
+    </div>
+    <div className="card__description">
+      <p>{description}</p>
+    </div>
   </div>
 );
 
