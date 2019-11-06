@@ -19,6 +19,10 @@
     min-height: 60rem;
     background: linear-gradient(to bottom, $color-primary-3, $color-primary-2)
       no-repeat 0 0 / cover;
+
+    @include respond(tab_port) {
+      margin-top: 15%;
+    }
   }
 
   /* Animation */

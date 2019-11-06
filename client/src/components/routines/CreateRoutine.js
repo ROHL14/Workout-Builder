@@ -19,6 +19,13 @@ const CreateRoutine = ({ createRoutine, history }) => {
     createRoutine(formData, history);
   };
 
+  /*const onSubmit = e => {
+    e.preventDefault();
+    createRoutine({ name: formData.name }).then(() => {
+      setFormData({ name: "" });
+    });
+  };*/
+
   return (
     <Fragment>
       <div
@@ -29,7 +36,7 @@ const CreateRoutine = ({ createRoutine, history }) => {
         aria-labelledby="ModalCenter"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="ModalTitle">

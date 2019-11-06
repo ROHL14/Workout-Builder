@@ -1,80 +1,74 @@
-.section-dashboard {
+.dashboard {
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
+  font-size: 1.2rem;
+  flex-wrap: wrap;
 
-  .dashboard {
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-    background: linear-gradient(to right, $color-primary-3, $color-primary-3)
-      no-repeat 0 0 / cover;
-    background-image: linear-gradient(
-        105deg,
-        rgba($color-rich-black, 0.9) 0%,
-        rgba($color-rich-black, 0.9) 50%,
-        rgba($color-rich-black, 0.9) 50%
-      ),
-      url("../../img/pattern.png");
-    background-size: 25%;
-    background-repeat: repeat;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25), 0 1rem 1rem rgba(0, 0, 0, 0.22);
-    position: relative;
-    width: 90%;
-    max-width: 100%;
-    height: 90%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
+  &__welcome,
+  &__add,
+  &__routines {
+    margin: 3rem auto;
+    border: 1px solid $color-alabaster;
+    border-radius: 1rem;
+    padding: 3rem;
+    background-image: linear-gradient(to right, $color-white, $color-alabaster);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  }
 
-    &__welcome {
-      margin-top: 3rem;
-      margin-left: 5rem;
-      margin-bottom: 3rem;
-      color: white;
+  &__welcome {
+    margin-top: 10rem;
+    flex: 0 0 90%;
 
-      h1 {
-        font-weight: bold;
-
-        text-transform: uppercase;
-      }
-      h4 {
-        font-weight: 100;
-        line-height: 2rem;
-        letter-spacing: 0.5px;
-        margin: 2rem 0 3rem;
-      }
+    &--title,
+    &--user {
+      text-transform: uppercase;
     }
 
-    &__actions {
-      margin-bottom: 3rem;
+    &--title {
+      font-size: 5rem;
+      letter-spacing: 1rem;
+      font-weight: 500;
     }
 
-    &__routines {
-      margin-left: 5rem;
-      margin-right: 5rem;
-      &--info {
-        margin-bottom: 3rem;
-      }
-
-      &--add {
-        margin-top: 3rem;
-        margin-bottom: 3rem;
-      }
-
-      &--days {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
+    &--user {
+      font-size: 2.5rem;
+      letter-spacing: 0.3rem;
     }
   }
 
-  &__list {
-    width: 90%;
-    margin: auto;
+  &__add {
+    flex: 0 0 90%;
+  }
+
+  &__routines {
+    flex: 0 0 90%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    .routine {
+      display: flex;
+      flex-direction: column;
+      margin: 2rem 1rem;
+      border: 1px solid $color-bone;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+      flex: 0 0 10%;
+      height: 10rem;
+      justify-content: space-evenly;
+      align-items: center;
+      border-radius: 1rem;
+
+      &__name {
+        font-size: 2rem;
+        text-decoration: none;
+        letter-spacing: 0.1rem;
+        color: $color-primary-3;
+
+        &:hover {
+          animation: pulsate 1s infinite;
+        }
+      }
+    }
   }
 }

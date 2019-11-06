@@ -12,7 +12,7 @@ import {
 } from "./types";
 
 // Create or Update Routine
-export const createRoutine = (formData, history) => async dispatch => {
+export const createRoutine = formData => async dispatch => {
   try {
     const config = {
       headers: {
@@ -25,10 +25,8 @@ export const createRoutine = (formData, history) => async dispatch => {
     dispatch({ type: CREATE_ROUTINE, payload: res.data });
 
     dispatch(setAlert("Routines Created", "success"));
-
-    history.push("/my-routines");
-  } catch (error) {
-    const errors = error.response.data.errors;
+  } catch (err) {
+    const errors = err.response.data.errors;
 
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
@@ -36,7 +34,7 @@ export const createRoutine = (formData, history) => async dispatch => {
 
     dispatch({
       type: ROUTINE_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
@@ -66,10 +64,10 @@ export const getUserRoutines = () => async dispatch => {
     const res = await axios.get("/api/routines");
 
     dispatch({ type: GET_ROUTINES, payload: res.data });
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: ROUTINE_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: { msg: err.response.data, status: err.response.status }
     });
   }
 };
@@ -80,16 +78,16 @@ export const getUserRoutine = id => async dispatch => {
     const res = await axios.get(`/api/routines/${id}`);
 
     dispatch({ type: GET_ROUTINE, payload: res.data });
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: ROUTINE_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: { msg: err.response.data, status: err.response.status }
     });
   }
 };
 
 // Add exercise of a routine
-export const addExercise = (id, formData, history) => async dispatch => {
+export const addExercise = (id, formData) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -109,10 +107,8 @@ export const addExercise = (id, formData, history) => async dispatch => {
     });
 
     dispatch(setAlert("Exercise Added", "success"));
-
-    history.push(`/my-routines`);
-  } catch (error) {
-    const errors = error.response.data.errors;
+  } catch (err) {
+    const errors = err.response.data.errors;
 
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
@@ -120,7 +116,7 @@ export const addExercise = (id, formData, history) => async dispatch => {
 
     dispatch({
       type: ROUTINE_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };

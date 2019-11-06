@@ -10,19 +10,20 @@ const Exercises = ({ getExercises, exercise: { exercises, loading } }) => {
     getExercises();
   }, [getExercises]);
 
-  return loading ? (
-    <Spinner />
-  ) : (
+  return (
     <Fragment>
-      {" "}
       <div className="background"></div>
       <section className="section-exercises">
         <div className="section-exercises__container">
           <h1 className="section-exercises__title">Exercises</h1>
           <div className="section-exercises__list u-margin-top-small">
-            {exercises.map(exercise => (
-              <ExerciseItem key={exercise._id} exercise={exercise} />
-            ))}
+            {loading ? (
+              <Spinner />
+            ) : (
+              exercises.map(exercise => (
+                <ExerciseItem key={exercise._id} exercise={exercise} />
+              ))
+            )}
           </div>
         </div>
       </section>

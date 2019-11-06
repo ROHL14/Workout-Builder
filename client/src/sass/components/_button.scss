@@ -121,3 +121,21 @@
   border-color: $color-white;
   color: $color-white;
 }
+
+.button {
+  border: none;
+  background-color: $color-light-sea;
+  color: $color-alabaster;
+  padding: 0.5rem;
+
+  &:hover {
+    color: rgba($color-primary-2, 0.25);
+    color: $color-alabaster;
+    outline: none;
+    animation: pulsate 1s infinite;
+  }
+
+  &--delete {
+    background-color: rgb(166, 29, 29);
+  }
+}

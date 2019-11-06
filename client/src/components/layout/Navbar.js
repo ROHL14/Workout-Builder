@@ -6,18 +6,6 @@ import { logout } from "../../actions/auth";
 //import GoogleAuth from "../auth/GoogleAuth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
-  const classToggle = () => {
-    const navs = document.querySelectorAll(".navigation__list");
-
-    navs.forEach(nav => nav.classList.toggle("navigation__toggle-show"));
-  };
-
-  const toggle = () => {
-    document
-      .querySelector(".navigation__item-toggle")
-      .addEventListener("click", classToggle);
-  };
-
   const authLinks = (
     <ul className="navigation__list">
       <li className="navigation__item">
@@ -61,14 +49,18 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   return (
     <div className="navigation">
-      <input type="checkbox" class="navigation__checkbox" id="navi-toggle" />
-      <lable
-        for="navi-toggle"
-        class="navigation__item navigation__item-toggle"
-        onClick={toggle}
+      <input
+        type="checkbox"
+        className="navigation__checkbox"
+        id="navi-toggle"
+      />
+      <label
+        htmlFor="navi-toggle"
+        className="navigation__item navigation__button"
       >
-        <span class="navigation__icon">&nbsp;</span>
-      </lable>
+        <span className="navigation__icon">&nbsp;</span>
+      </label>
+      <div className="navigation__background"></div>
       <nav className="navigation__nav">
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

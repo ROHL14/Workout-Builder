@@ -1,11 +1,10 @@
 .header {
   height: 100vh;
   background-image: linear-gradient(
-      to right bottom,
-      rgba($color-primary-3, 0.8),
-      rgba($color-primary-4, 0.8)
-    ),
-    url("../../img/undraw_working_out_6psf.svg");
+    to right bottom,
+    rgba($color-primary-3, 0.8),
+    rgba($color-primary-4, 0.8)
+  );
   background-size: unset;
   background-repeat: no-repeat;
   background-position: center;

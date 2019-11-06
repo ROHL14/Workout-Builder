@@ -10,22 +10,28 @@ const Landing = ({ isAuthenticated }) => {
 
   return (
     <Fragment>
-      <div className="background"></div>
-      <section className="section-about">
-        <div className="section-about__info">
-          <h2 className="heading-tertiary">
-            The best place to find any exercise.
-          </h2>
-          <p className="paragraph">
-            You can build your personalize routines with a lot of exercises to
-            choose
-          </p>
-          <p className="paragraph">
-            In our database we have all the exercise that you can imagine, You
-            just need to choose the exercise and it will added to your routine
-          </p>
-        </div>
-      </section>
+      <main className="wrapper">
+        <div className="background"></div>
+        <section className="section-about">
+          <div className="section-about__title">
+            <h1 className="section-about__title--text">Workout Builder</h1>
+          </div>
+          <div className="section-about__slogan">
+            <h1 className="section-about__slogan--main">The Best Place</h1>
+            <h1 className="section-about__slogan--sub">to find any exercise</h1>
+          </div>
+          <div className="section-about__info">
+            <p className="section-about__info--text">
+              You can build your personalize routines with a lot of exercises to
+              choose
+            </p>
+            <p className="section-about__info--text">
+              In our database we have all the exercise that you can imagine, You
+              just need to choose the exercise and it will added to your routine
+            </p>
+          </div>
+        </section>
+      </main>
     </Fragment>
   );
 };

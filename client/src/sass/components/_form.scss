@@ -37,3 +37,39 @@
     width: 100%;
   }
 }
+
+.form-2 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+    height: 3rem;
+    border: none;
+    background: $color-tertiary-light;
+    padding: 0.7rem 2rem;
+    margin-right: -3.5rem;
+    transition: all 0.2s;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+      height: 4rem;
+      background-color: $color-grey-light-2;
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: $color-grey-dark-2;
+    }
+  }
+}

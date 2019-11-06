@@ -7,10 +7,12 @@
 
   &__title {
     text-transform: uppercase;
-    margin: 3rem 7rem;
+    font-weight: bolder;
+    margin: 2% 5%;
   }
 
   &__container {
+    margin-top: 10rem;
     border-radius: 1rem;
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -25,6 +27,14 @@
     overflow-x: hidden;
     justify-content: center;
     align-items: center;
+
+    @include respond(tab_port) {
+      margin-top: 10%;
+    }
+
+    @include respond(phone) {
+      margin-top: 20%;
+    }
   }
 
   &__list {

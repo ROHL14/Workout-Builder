@@ -33,25 +33,19 @@ const App = () => {
       <BrowserRouter>
         <Fragment>
           <Navbar />
-          <main className="wrapper">
-            <Route path="/" exact component={Landing} />
-            <Alert />
-            <Switch>
-              <Route exact path="/authenticate" component={Authentication} />
-              <Route path="/exercises" exact component={Exercises} />
-              <PrivateRoute exact path="/my-routines" component={Dashboard} />
-              <PrivateRoute
-                path="/create-routine"
-                exact
-                component={CreateRoutine}
-              />
-              <PrivateRoute
-                path="/add-exercise/:id"
-                exact
-                component={AddExercise}
-              />
-            </Switch>
-          </main>
+          <Route path="/" exact component={Landing} />
+          <Alert />
+          <Switch>
+            <Route exact path="/authenticate" component={Authentication} />
+            <Route path="/exercises" exact component={Exercises} />
+            <PrivateRoute exact path="/my-routines" component={Dashboard} />
+            <PrivateRoute
+              path="/create-routine"
+              exact
+              component={CreateRoutine}
+            />
+            <PrivateRoute path="/routine/:id" exact component={AddExercise} />
+          </Switch>
         </Fragment>
       </BrowserRouter>
     </Provider>

@@ -1,5 +1,6 @@
 .wrapper {
   height: 90vh;
+  overflow: hidden;
 
   .background {
     z-index: -10;
@@ -17,6 +18,10 @@
 
     @include respond(mid_desk) {
       background-size: cover;
+    }
+
+    @include respond(phone) {
+      background-position: center;
     }
   }
 }
