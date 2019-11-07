@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import Routine from "../routines/Routine";
 
-//import { getUserRoutines } from "../../actions/routine";
-
 const Dashboard = ({ auth: { user } }) => {
   return user === null ? (
     <Spinner></Spinner>

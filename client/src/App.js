@@ -6,7 +6,6 @@ import Landing from "./components/layout/Landing";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import Exercises from "./components/exercises/Exercises";
-import CreateRoutine from "./components/routines/CreateRoutine";
 import AddExercise from "./components/routines/AddExercise";
 import Authentication from "./components/auth/Authentication";
 import PrivateRoute from "./components/routing/PrivateRoute";
@@ -39,11 +38,6 @@ const App = () => {
             <Route exact path="/authenticate" component={Authentication} />
             <Route path="/exercises" exact component={Exercises} />
             <PrivateRoute exact path="/my-routines" component={Dashboard} />
-            <PrivateRoute
-              path="/create-routine"
-              exact
-              component={CreateRoutine}
-            />
             <PrivateRoute path="/routine/:id" exact component={AddExercise} />
           </Switch>
         </Fragment>

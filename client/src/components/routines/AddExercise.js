@@ -44,7 +44,9 @@ const AddExercise = ({
 
   const showExercises = () => {
     return routine.exercise.length === 0 ? (
-      <h1>You haven't add any exercise yet</h1>
+      <div className="section-routine__exercises">
+        <h1>You haven't add any exercise yet</h1>
+      </div>
     ) : (
       <div className="section-routine__exercises">
         <div className="section-routine__exercises--table-section">
